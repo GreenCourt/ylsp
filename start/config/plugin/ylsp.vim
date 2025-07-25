@@ -39,7 +39,6 @@ func s:setup() abort
         \   path: "pyright-langserver",
         \   args: ["--stdio"],
         \   workspaceConfig: #{ python: #{
-        \     pythonPath: exepath("python3"),
         \     analysis: #{ typeCheckingMode: "off" },
         \   }},
         \   features: #{ documentFormatting: v:false, diagnostics: v:false },
