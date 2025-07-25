@@ -3,7 +3,7 @@ let &rulerformat="%l,%c%V%=%{LspRuler()}%P"
 aug ylsp
   au!
   au User LspSetup call s:setup()
-  au User LspAttached call ylsp#attached()
+  au User LspAttached setl completeopt+=popup keywordprg=:LspHover formatexpr=lsp#lsp#FormatExpr() tagfunc=lsp#lsp#TagFunc complete-=t
 
  " call echon to redraw the ruler
   au User LspDiagsUpdated execute "redrawstatus! | echon"
