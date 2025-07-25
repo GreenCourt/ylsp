@@ -1,4 +1,4 @@
-let &rulerformat="%l,%c%V%=%{get(b:,'ruler_lsp_diag','')}%P"
+let &rulerformat="%l,%c%V%=%{LspRuler()}%P"
 
 aug ylsp
   au!
@@ -6,6 +6,14 @@ aug ylsp
   au User LspAttached call ylsp#attached()
   au User LspDiagsUpdated call ylsp#diag_updated()
 aug END
+
+func LspRuler() abort
+  return !lsp#buffer#BufHasLspServer(bufnr())
+        \ ? ""
+        \ : (lsp#lsp#ErrorCount()->values()->filter("v:val")->len())
+        \ ? "\U1F41E "
+        \ : "\u2705 "
+endfunc
 
 func s:setup() abort
   call LspOptionsSet(#{

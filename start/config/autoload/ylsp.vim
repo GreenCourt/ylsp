@@ -9,9 +9,8 @@ func ylsp#attached() abort
 endfunc
 
 func ylsp#diag_updated() abort
-  let b:ruler_lsp_diag=(lsp#lsp#ErrorCount()->values()->filter("v:val")->len()) ? "\U1F41E " : "\u2705 "
-  redrawstatus
-  " use echon to update the ruler
+  redrawstatus!
+  " call echon to redraw the ruler
   echon
 endfunc
 
