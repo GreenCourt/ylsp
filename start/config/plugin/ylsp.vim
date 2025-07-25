@@ -4,7 +4,9 @@ aug ylsp
   au!
   au User LspSetup call s:setup()
   au User LspAttached call ylsp#attached()
-  au User LspDiagsUpdated call ylsp#diag_updated()
+
+ " call echon to redraw the ruler
+  au User LspDiagsUpdated execute "redrawstatus! | echon"
 aug END
 
 func LspRuler() abort

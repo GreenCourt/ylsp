@@ -8,12 +8,6 @@ func ylsp#attached() abort
   echon "\U1F525"
 endfunc
 
-func ylsp#diag_updated() abort
-  redrawstatus!
-  " call echon to redraw the ruler
-  echon
-endfunc
-
 func s:menu() abort
   call popup_menu(s:lsp_commands, #{ 
         \ callback : "<SID>callback",
