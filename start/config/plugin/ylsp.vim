@@ -19,7 +19,9 @@ endfunc
 func s:setup() abort
   call LspOptionsSet(#{
         \ showDiagWithSign: v:false,
+        \ autoPopulateDiags: v:true,
         \ autoComplete: v:false,
+        \ showSignature: v:false,
         \ ignoreCompleteItemsIsIncomplete: ["rust-analyzer", "pyright"],
         \ outlineWinSize: 30,
         \ popupBorder: v:true,
