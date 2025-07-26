@@ -3,14 +3,13 @@ let &rulerformat="%l,%c%V%=%{LspRuler()}%P"
 aug ylsp
   au!
   au User LspSetup call s:setup()
-  au User LspAttached setl completeopt+=popup keywordprg=:LspHover formatexpr=lsp#lsp#FormatExpr() tagfunc=lsp#lsp#TagFunc complete-=t
 
  " call echon to redraw the ruler
   au User LspDiagsUpdated execute "redrawstatus! | echon"
 aug END
 
 func LspRuler() abort
-  return !lsp#buffer#BufHasLspServer(bufnr())
+  return !exists("b:lsp_diag_on_ruler")
         \ ? ""
         \ : (lsp#lsp#ErrorCount()->values()->filter("v:val")->len())
         \ ? "\U1F41E "
@@ -42,7 +41,6 @@ func s:setup() abort
         \   path: "rust-analyzer",
         \   args: [],
         \   syncInit: v:true,
-        \   features: #{ diagnostics: v:false },
         \ },
         \ #{name: "pyright",
         \   filetype: "python",
