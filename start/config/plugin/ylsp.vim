@@ -1,29 +1,15 @@
-let &rulerformat="%l,%c%V%=%{LspRuler()}%P"
-
 aug ylsp
   au!
   au User LspSetup call s:setup()
-
- " call echon to redraw the ruler
-  au User LspDiagsUpdated execute "redrawstatus! | echon"
 aug END
-
-func LspRuler() abort
-  return !exists("b:lsp_diag_on_ruler")
-        \ ? ""
-        \ : (lsp#lsp#ErrorCount()->values()->filter("v:val")->len())
-        \ ? "\U1F41E "
-        \ : "\u2705 "
-endfunc
 
 func s:setup() abort
   call LspOptionsSet(#{
         \ showDiagWithSign: v:false,
-        \ autoPopulateDiags: v:true,
+        \ autoHighlightDiags: v:false,
         \ autoComplete: v:false,
         \ showSignature: v:false,
         \ ignoreCompleteItemsIsIncomplete: ["rust-analyzer", "pyright"],
-        \ outlineWinSize: 30,
         \ popupBorder: v:true,
         \ popupHighlightSignatureHelp: "Normal",
         \ popupHighlight: "Normal",
@@ -36,7 +22,6 @@ func s:setup() abort
         \   filetype: ["c"],
         \   path: "clangd",
         \   args: ["--background-index"],
-        \   features: #{ diagnostics: v:false },
         \ },
         \ #{name: "rust-analyzer",
         \   filetype: ["rust"],
