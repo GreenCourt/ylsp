@@ -29,19 +29,5 @@ func s:setup() abort
         \   args: [],
         \   syncInit: v:true,
         \ },
-        \ #{name: "pyright",
-        \   filetype: "python",
-        \   path: "pyright-langserver",
-        \   args: ["--stdio"],
-        \   workspaceConfig: #{ python: #{
-        \     analysis: #{ typeCheckingMode: "off" },
-        \   }},
-        \   features: #{ documentFormatting: v:false, diagnostics: v:false },
-        \  },
-        \ #{name: "ruff",
-        \   filetype: "python",
-        \   path: "ruff",
-        \   args: ["server"],
-        \  },
         \ ])
 endfunc
